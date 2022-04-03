@@ -99,6 +99,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        //Fast-Exit the game
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         /*
         //Tower Select
         //TEMPORARY! Replace with UI buttons later

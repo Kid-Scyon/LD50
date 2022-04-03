@@ -27,7 +27,7 @@ public class ResourceTower : MonoBehaviour
     IEnumerator SpawnShip()
     {
         yield return new WaitForSeconds(spawnTimer);
-        ownedShip = Instantiate(shipPrefab, transform.position, Quaternion.identity);
+        ownedShip = Instantiate(shipPrefab, transform.position,Quaternion.identity);
         ownedShip.SetOwner(this);
     }
 }

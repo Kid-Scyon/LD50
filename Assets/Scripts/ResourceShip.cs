@@ -5,6 +5,7 @@ using UnityEngine;
 public class ResourceShip : MonoBehaviour
 {
     [SerializeField] [Range(0.1f, 5)] float speed = 1;
+    [SerializeField] int resourceReward = 25;
     List<Node> route = new List<Node>();
     GameManager gm;
     GridManager gridManager;
@@ -45,7 +46,7 @@ public class ResourceShip : MonoBehaviour
             Vector3 endPos = gridManager.PosFromCoord(route[i].coord);
             float movePercent = 0f;
 
-            transform.LookAt(endPos);
+            transform.LookAt(2 * transform.position - endPos);
 
             //Smooth moving between two points using LERP (Linear intERPolation)
             while (movePercent < 1f)
@@ -57,7 +58,7 @@ public class ResourceShip : MonoBehaviour
 
         }
 
-        gm.GetComponent<Bank>().ChangeBalance(100);
+        gm.GetComponent<Bank>().ChangeBalance(resourceReward);
         //Create a new ship, as this one will be destroyed
         owner.NewShip();
         Destroy(gameObject);

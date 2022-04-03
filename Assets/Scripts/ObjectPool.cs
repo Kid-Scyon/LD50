@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public List<GameObject> enemySpawners;
-    [SerializeField][Range(0.1f, 5)] float spawnTimer = 1f;
+    //[SerializeField][Range(0.1f, 5)] float spawnTimer = 1f;
 
     GameObject[] pool;
     public bool inWave = false;
@@ -37,7 +37,7 @@ public class ObjectPool : MonoBehaviour
         while(inWave)
         {
             EnableObjectInPool();
-            yield return new WaitForSeconds(spawnTimer);
+            yield return new WaitForEndOfFrame();
         }
     }
 

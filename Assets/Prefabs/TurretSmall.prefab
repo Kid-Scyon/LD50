@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 434924994234320230}
   lazors: {fileID: 8012070876424690454}
-  range: 500
+  range: 50
 --- !u!114 &-4851592453417594004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,7 +5216,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 44790019bcfc46c47bcb89cea3588d7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
