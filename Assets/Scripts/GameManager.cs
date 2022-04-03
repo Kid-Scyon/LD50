@@ -16,6 +16,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] TextMeshProUGUI scoreText;
 
+    //Damage to enemies
+    [SerializeField] int damage = 1;
+    public int Damage { get { return damage; } }
+    [SerializeField] int dmgIncrease = 2;
+    [SerializeField] int increaseCost = 500;
+
 
     ObjectPool pool;
     Pathfinding pathfinder;
@@ -79,5 +85,15 @@ public class GameManager : MonoBehaviour
     {
         score += amount;
         scoreText.text = "Score\n" + score;
+    }
+
+    public void IncreaseDamage()
+    {
+        if (GetComponent<Bank>().CurBalance >= increaseCost)
+        {
+            damage += dmgIncrease;
+            GetComponent<Bank>().ChangeBalance(-increaseCost);
+        }
+
     }
 }

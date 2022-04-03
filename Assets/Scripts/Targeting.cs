@@ -9,6 +9,7 @@ public class Targeting : MonoBehaviour
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem lazors;
     [SerializeField] float range = 50f;
+    Enemy[] enemiesOnBoard;
 
     Transform target;
 
@@ -16,13 +17,23 @@ public class Targeting : MonoBehaviour
     {
 
         PickTarget();
-        AimWeapon();
+
+        if(enemiesOnBoard.Length > 0)
+        {
+            AimWeapon();
+        }
+
+        //Turn off laserz when enemies are cleared
+        else
+        {
+            Attack(false);
+        }
         
     }
 
     void PickTarget()
     {
-        Enemy[] enemiesOnBoard = FindObjectsOfType<Enemy>();
+        enemiesOnBoard = FindObjectsOfType<Enemy>();
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 

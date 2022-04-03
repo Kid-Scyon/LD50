@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cb8bc6579dc78941b777d010c3bae63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 200
+  cost: 400
 --- !u!114 &4803463792000943732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,11 +182,11 @@ MonoBehaviour:
   shipPrefab: {fileID: -5474453161844978594, guid: 47d8bc8cb3875cc48b486a78df1ac228, type: 3}
   spawnTimer: 10
   resource:
-    coord: {x: 0, y: 0}
+    coord: {x: 13, y: 17}
     isRoutable: 0
     isExplored: 0
     isInRoute: 0
-    isResource: 0
+    isResource: 1
 --- !u!1 &1062673286732487287
 GameObject:
   m_ObjectHideFlags: 0
