@@ -134,7 +134,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot()
     {
-        lazor.Play();
+        if (!lazor.isPlaying)
+        {
+            lazor.Play();
+        }
     }
 
     private void ToggleBuildSpheres(bool enableSpheres)

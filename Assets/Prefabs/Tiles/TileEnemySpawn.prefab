@@ -84,7 +84,7 @@ PrefabInstance:
     - target: {fileID: 1392615437220908622, guid: e42b50cb365980a4e8a4e85cd93884fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ee24f054d1fdddf4baefc3323d85b471, type: 2}
+      objectReference: {fileID: 2100000, guid: 6233bf0d922e52549bce93968371e0d3, type: 2}
     - target: {fileID: 2684216003583866659, guid: e42b50cb365980a4e8a4e85cd93884fe, type: 3}
       propertyPath: m_Name
       value: EnemySpawn
@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 6481042242543955588, guid: e42b50cb365980a4e8a4e85cd93884fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: ee24f054d1fdddf4baefc3323d85b471, type: 2}
+      objectReference: {fileID: 2100000, guid: 6233bf0d922e52549bce93968371e0d3, type: 2}
     - target: {fileID: 8393985749441254904, guid: e42b50cb365980a4e8a4e85cd93884fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

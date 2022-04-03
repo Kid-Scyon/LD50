@@ -21,9 +21,18 @@ public class Pathfinding : MonoBehaviour
     Dictionary<Vector2Int, Node> grid = new Dictionary<Vector2Int, Node>();
     GridManager gridManager;
 
+    ObjectPool pool;
+    List<Vector2Int> spawnLocations = new List<Vector2Int>();
+
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
+        pool = FindObjectOfType<ObjectPool>();
+        
+        foreach(GameObject g in pool.enemySpawners)
+        {
+            spawnLocations.Add(gridManager.CoordFromPos(g.transform.position));
+        }
 
         if(gridManager != null)
         {
@@ -186,21 +195,25 @@ public class Pathfinding : MonoBehaviour
 
     public bool WillBlockPath(Vector2Int coord)
     {
+
         if(grid.ContainsKey(coord))
         {
             bool previousState = grid[coord].isRoutable;
             grid[coord].isRoutable = false;
-            List<Node> newPath = GetNewPath();
-            grid[coord].isRoutable = previousState;
-
-            if(newPath.Count <= 1)
+            foreach(Vector2Int v in spawnLocations)
             {
-                GetNewPath();
-                return true;
+                List<Node> newPath = GetNewPath(v);
+
+                if (newPath.Count <= 1)
+                {
+                    grid[coord].isRoutable = true;
+                    GetNewPath();
+                    return true;
+                }
             }
 
         }
-
+        grid[coord].isRoutable = true;
         return false;
     }
 

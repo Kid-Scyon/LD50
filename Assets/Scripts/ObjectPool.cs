@@ -6,10 +6,10 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] public List<GameObject> enemySpawners;
-    //[SerializeField][Range(0.1f, 5)] float spawnTimer = 1f;
+    [SerializeField][Range(0.1f, 5)] float spawnTimer = 1f;
 
     GameObject[] pool;
-    public bool inWave = false;
+    [SerializeField] GameManager gm;
 
     public void FillPool(int poolSize)
     {
@@ -34,15 +34,20 @@ public class ObjectPool : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while(inWave)
+        for(int i = 0; i < gm.waveSize; i++)
         {
             EnableObjectInPool();
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(spawnTimer);
         }
+
+        //Increase the size and difficulty of the next wave
+        gm.IncreaseWave();
+        gm.IncreaseStats();
     }
 
     private void EnableObjectInPool()
     {
+
         for(int i = 0; i < pool.Length; i++)
         {
             if(pool[i].activeInHierarchy == false)
@@ -52,6 +57,5 @@ public class ObjectPool : MonoBehaviour
             }
         }
 
-        inWave = false;
     }
 }

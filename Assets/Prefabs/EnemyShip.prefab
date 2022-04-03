@@ -246,7 +246,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 5
   curHP: 0
+  statIncrease: 2
   scoreValue: 10
+  cashReward: 5
 --- !u!114 &4162275995636288015
 MonoBehaviour:
   m_ObjectHideFlags: 0

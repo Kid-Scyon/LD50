@@ -11,16 +11,24 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int waveTimer = 60;
     int timeRemaining;
-    [SerializeField] int waveSize = 4;
+    [SerializeField] public int waveSize = 4;
     [SerializeField] int waveIncrease = 4;
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI dmgPriceButton;
 
     //Damage to enemies
     [SerializeField] int damage = 1;
     public int Damage { get { return damage; } }
     [SerializeField] int dmgIncrease = 2;
     [SerializeField] int increaseCost = 500;
+    [SerializeField] int dmgPriceIncrease = 100;
+
+    //Enemy HP and score
+    [SerializeField] public int enemyMaxHP = 5;
+    [SerializeField] public int statIncrease = 2;
+    [SerializeField] public int scoreValue = 10;
+    [SerializeField] public int cashReward = 5;
 
 
     ObjectPool pool;
@@ -64,16 +72,12 @@ public class GameManager : MonoBehaviour
         int randSpawner = Random.Range(0, pool.enemySpawners.Count);
         Vector2Int coord = gridmanager.CoordFromPos(pool.enemySpawners[randSpawner].transform.position);
         pathfinder.UpdateStartCoord(coord);
-        pool.inWave = true;
 
         //Fill the Object pool with the correct number of enemies for the wave
         pool.FillPool(waveSize);
 
-        //Increase the pool size over time for a difficulty ramp
-        waveSize += waveIncrease;
-
         isRunning = false;
-        timeRemaining = 60;
+        timeRemaining = waveTimer;
     }
 
     public void ChangeSelectedTower(int towerCode)
@@ -93,7 +97,24 @@ public class GameManager : MonoBehaviour
         {
             damage += dmgIncrease;
             GetComponent<Bank>().ChangeBalance(-increaseCost);
+
+            increaseCost += dmgPriceIncrease;
+            dmgPriceButton.text = "DMG +1\n" + increaseCost;
         }
 
     }
+
+    public void IncreaseWave()
+    {
+        //Increase the pool size over time for a difficulty ramp
+        waveSize += waveIncrease;
+    }
+
+    public void IncreaseStats()
+    {
+        enemyMaxHP += statIncrease;
+        scoreValue += statIncrease;
+        cashReward += statIncrease;
+    }
+
 }
