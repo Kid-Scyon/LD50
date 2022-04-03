@@ -70,9 +70,11 @@ public class EnemyMovement : MonoBehaviour
 
         }
 
+        gameObject.GetComponent<AudioSource>().Play();
         gameObject.SetActive(false);
 
         //Damage the Base
         gm.GetComponent<BaseHP>().reduceHP(enemyDamage);
+
     }
 }

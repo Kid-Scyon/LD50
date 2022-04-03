@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(curHP <= 0)
         {
+            gameObject.GetComponent<AudioSource>().Play();
             gameObject.SetActive(false);
             gm.IncreaseScore(scoreValue);
         }
