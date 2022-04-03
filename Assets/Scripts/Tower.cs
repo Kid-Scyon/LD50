@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
         if(gmBank.CurBalance >= cost)
         {
             Instantiate(tower.gameObject, pos, Quaternion.identity);
-            gmBank.changeBalance(-cost);
+            gmBank.ChangeBalance(-cost);
             return true;
         }
 

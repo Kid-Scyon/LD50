@@ -18,7 +18,7 @@ public class Bank : MonoBehaviour
         balanceUI.text = "$" + curBalance;
     }
 
-    public void changeBalance(int balanceChange)
+    public void ChangeBalance(int balanceChange)
     {
         curBalance += balanceChange;
         balanceUI.text = "$" + curBalance;

@@ -5,7 +5,10 @@ using UnityEngine;
 public class Pathfinding : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoord;
+    public Vector2Int StartCoord { get { return startCoord; } }
+
     [SerializeField] Vector2Int endCoord;
+    public Vector2Int EndCoord { get { return endCoord; } }
 
     Node currentNode;
     Node startNode;
@@ -25,17 +28,37 @@ public class Pathfinding : MonoBehaviour
         if(gridManager != null)
         {
             grid = gridManager.Grid;
+            startNode = grid[startCoord];
+            endNode = grid[endCoord];
         }
 
     }
 
     private void Start()
     {
-        startNode = gridManager.Grid[startCoord];
-        endNode = gridManager.Grid[endCoord];
+        GetNewPath();
+    }
 
-        BreadthFirstSearch();
-        BuildPath();
+    public void UpdateStartCoord(Vector2Int newCoord)
+    {
+        startCoord = newCoord;
+    }
+
+    public void UpdateEndCoord(Vector2Int newCoord)
+    {
+        endCoord = newCoord;
+    }
+
+    public List<Node> GetNewPath()
+    {
+        return GetNewPath(startCoord);
+    }
+
+    public List<Node> GetNewPath(Vector2Int coord)
+    {
+        gridManager.ResetNodes();
+        BreadthFirstSearch(coord);
+        return BuildPath();
     }
 
     void ExploreNeighbors()
@@ -53,7 +76,6 @@ public class Pathfinding : MonoBehaviour
             if (grid.ContainsKey(neighborCoords))
             {
                 neighbors.Add(grid[neighborCoords]);
-
             }
         }
 
@@ -70,12 +92,51 @@ public class Pathfinding : MonoBehaviour
         }
     }
 
-    void BreadthFirstSearch()
+    public Node ExploreNeighborsResource(Vector2Int placeLocation)
     {
+        
+        Shuffle();
+
+        List<Node> neighbors = new List<Node>();
+
+        //Check each direction from the current node
+        foreach (Vector2Int direction in directions)
+        {
+
+            Vector2Int neighborCoords = placeLocation + direction;
+
+            //Chack that the neighbor is actually in the grid (i.e. not off the map)
+            if (grid.ContainsKey(neighborCoords))
+            {
+                neighbors.Add(grid[neighborCoords]);
+            }
+        }
+
+        //Check each neighboring Node and see if it's a resource
+        foreach (Node neighbor in neighbors)
+        {
+            //If we find one, it's legal and we can place
+            if (neighbor.isResource)
+            {
+                return neighbor;
+            }
+        }
+        return null;
+        
+    }
+
+    void BreadthFirstSearch(Vector2Int coord)
+    {
+        startNode.isRoutable = true;
+        endNode.isRoutable = true;
+
+        frontier.Clear();
+        reached.Clear();
+
         bool flag = true;
 
-        frontier.Enqueue(startNode);
-        reached.Add(startCoord, startNode);
+        frontier.Enqueue(grid[coord]);
+        reached.Add(coord, grid[coord]);
 
         while(frontier.Count > 0 && flag)
         {
@@ -121,6 +182,31 @@ public class Pathfinding : MonoBehaviour
             directions[i] = directions[rand];
             directions[rand] = tmp;
         }
+    }
+
+    public bool WillBlockPath(Vector2Int coord)
+    {
+        if(grid.ContainsKey(coord))
+        {
+            bool previousState = grid[coord].isRoutable;
+            grid[coord].isRoutable = false;
+            List<Node> newPath = GetNewPath();
+            grid[coord].isRoutable = previousState;
+
+            if(newPath.Count <= 1)
+            {
+                GetNewPath();
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+
+    public void NotifyReceivers()
+    {
+        BroadcastMessage("RecalculatePath", false, SendMessageOptions.DontRequireReceiver);
     }
 
 }

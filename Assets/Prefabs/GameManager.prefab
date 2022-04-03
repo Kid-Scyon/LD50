@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4772225163765241050
+--- !u!1 &2577018486888084876
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8046487982233867996}
-  - component: {fileID: 2204926305154052423}
-  - component: {fileID: 8069657759127489775}
+  - component: {fileID: 2577018486888084878}
+  - component: {fileID: 2577018486888084877}
+  - component: {fileID: 2577018486888084872}
+  - component: {fileID: 2577018486888084879}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18,27 +19,59 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8046487982233867996
+--- !u!4 &2577018486888084878
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4772225163765241050}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 2577018486888084876}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2204926305154052423
+--- !u!114 &2577018486888084877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4772225163765241050}
+  m_GameObject: {fileID: 2577018486888084876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15404e2e7e947b94fb69c3eae3423aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curTowerSelect: 0
+  towerPrefabs:
+  - {fileID: -4851592453417594004, guid: cb057eda5c1389445977325312962c96, type: 3}
+  - {fileID: -6599755300824883563, guid: bf6252fbe92d3384fa502edb4d911abd, type: 3}
+  - {fileID: -5178426685778449870, guid: b3241c234834c5a4090ecca6ef160e95, type: 3}
+  waveTimer: 60
+--- !u!114 &2577018486888084872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577018486888084876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580a00456752b964887ab86a11b02453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startBalance: 500
+  balanceUI: {fileID: 0}
+--- !u!114 &2577018486888084879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577018486888084876}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91d568f7d86ec4f43b540bf142c5d8d5, type: 3}
@@ -46,18 +79,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseHP: 100
   hpUI: {fileID: 0}
---- !u!114 &8069657759127489775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4772225163765241050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15404e2e7e947b94fb69c3eae3423aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  curTowerSelect: 0
-  towerPrefabs: []
-  waveTimer: 60

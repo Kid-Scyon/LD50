@@ -32,16 +32,23 @@ public class Targeting : MonoBehaviour
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
-        foreach(Enemy e in enemiesOnBoard)
+        if(enemiesOnBoard.Length > 0)
         {
-            float distance = Vector3.Distance(transform.position, e.transform.position);
-
-            if(distance < maxDistance)
+            foreach (Enemy e in enemiesOnBoard)
             {
-                closestTarget = e.transform;
-                maxDistance = distance;    
+                float distance = Vector3.Distance(transform.position, e.transform.position);
+
+                if (distance < maxDistance)
+                {
+                    closestTarget = e.transform;
+                    maxDistance = distance;
+                }
             }
+
+            target = closestTarget;
+            hasTarget = true;
         }
+
     }
 
     private void AimWeapon()

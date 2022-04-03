@@ -34,6 +34,24 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public void MakeResource(Vector2Int coord)
+    {
+        if (grid.ContainsKey(coord))
+        {
+            grid[coord].isResource = true;
+        }
+    }
+
+    public void ResetNodes()
+    {
+        foreach(KeyValuePair<Vector2Int, Node> entry in grid)
+        {
+            entry.Value.connectedTo = null;
+            entry.Value.isExplored = false;
+            entry.Value.isInRoute = false;
+        }
+    }
+
     public Vector2Int CoordFromPos(Vector3 pos)
     {
         Vector2Int coordinates = new Vector2Int();

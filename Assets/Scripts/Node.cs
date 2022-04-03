@@ -9,6 +9,7 @@ public class Node
     public bool isRoutable;
     public bool isExplored;
     public bool isInRoute;
+    public bool isResource;
     public Node connectedTo;
 
     public Node(Vector2Int coord, bool isRoutable)

@@ -5,30 +5,22 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] int poolSize = 4;
-    [SerializeField] List<GameObject> enemySpawners;
+    [SerializeField] public List<GameObject> enemySpawners;
     [SerializeField][Range(0.1f, 5)] float spawnTimer = 1f;
-    [SerializeField] [Range(5, 120)] int waveTimer = 60;
 
     GameObject[] pool;
+    public bool inWave = false;
 
-    void Awake()
-    {
-        FillPool();
-    }
-
-    public void FillPool()
+    public void FillPool(int poolSize)
     {
         pool = new GameObject[poolSize];
 
         for(int i = 0; i < pool.Length; i++)
         {
             pool[i] = createNewEnemy();
+            pool[i].SetActive(false);
         }
-    }
 
-    void Start()
-    {
         StartCoroutine(SpawnEnemy());
     }
 
@@ -36,12 +28,13 @@ public class ObjectPool : MonoBehaviour
     {
         int randSpawner = Random.Range(0, enemySpawners.Count);
         GameObject newEnemy = Instantiate(enemyPrefab, enemySpawners[randSpawner].transform);
+
         return newEnemy;
     }
 
     IEnumerator SpawnEnemy()
     {
-        while(true)
+        while(inWave)
         {
             EnableObjectInPool();
             yield return new WaitForSeconds(spawnTimer);
@@ -58,5 +51,7 @@ public class ObjectPool : MonoBehaviour
                 return;
             }
         }
+
+        inWave = false;
     }
 }

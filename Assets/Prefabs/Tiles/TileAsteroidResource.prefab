@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileAsteroidResource
       objectReference: {fileID: 0}
+    - target: {fileID: 5547021265905200081, guid: 008f71efc68e86a4b9bc67c6f071ef33, type: 3}
+      propertyPath: isResource
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 008f71efc68e86a4b9bc67c6f071ef33, type: 3}
 --- !u!4 &5827884074645993149 stripped
