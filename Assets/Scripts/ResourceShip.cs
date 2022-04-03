@@ -64,10 +64,11 @@ public class ResourceShip : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Colliding with enemy!");
         owner.NewShip();
         Destroy(gameObject);
     }
+
 }

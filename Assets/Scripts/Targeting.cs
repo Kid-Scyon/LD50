@@ -11,29 +11,24 @@ public class Targeting : MonoBehaviour
     [SerializeField] float range = 50f;
 
     Transform target;
-    bool hasTarget = false;
 
     void Update()
     {
-        if(!hasTarget)
-        {
-            PickTarget();
-        }
 
-        else
-        {
-            AimWeapon();
-        }
+        PickTarget();
+        AimWeapon();
+        
     }
 
-    private void PickTarget()
+    void PickTarget()
     {
         Enemy[] enemiesOnBoard = FindObjectsOfType<Enemy>();
         Transform closestTarget = null;
         float maxDistance = Mathf.Infinity;
 
-        if(enemiesOnBoard.Length > 0)
+        if (enemiesOnBoard.Length > 0)
         {
+
             foreach (Enemy e in enemiesOnBoard)
             {
                 float distance = Vector3.Distance(transform.position, e.transform.position);
@@ -46,12 +41,11 @@ public class Targeting : MonoBehaviour
             }
 
             target = closestTarget;
-            hasTarget = true;
-        }
 
+        }
     }
 
-    private void AimWeapon()
+    void AimWeapon()
     {
         float targetDistance = Vector3.Distance(transform.position, target.position);
         weapon.LookAt(target);
@@ -59,13 +53,11 @@ public class Targeting : MonoBehaviour
         if(targetDistance < range)
         {
             Attack(true);
-            hasTarget = true;
         }
 
         else
         {
             Attack(false);
-            hasTarget = false;
         }
     }
 

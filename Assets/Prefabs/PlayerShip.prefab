@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3892912473470064124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4324964137514155285}
@@ -4857,6 +4857,7 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   buildCam: {fileID: 0}
   lazor: {fileID: 0}
+  buildButtons: []
   moveSpeed: 1
   rotateSpeed: 10
 --- !u!1 &4469424207332524329

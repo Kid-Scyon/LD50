@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
 
         if(gmBank.CurBalance >= cost)
         {
+            //Offset to ignore collision with the floor
+            pos.y += 2;
             Instantiate(tower.gameObject, pos, Quaternion.identity);
             gmBank.ChangeBalance(-cost);
             return true;

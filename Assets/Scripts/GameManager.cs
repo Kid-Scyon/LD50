@@ -14,11 +14,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] int waveSize = 4;
     [SerializeField] int waveIncrease = 4;
     [SerializeField] TextMeshProUGUI timer;
+    [SerializeField] TextMeshProUGUI scoreText;
+
 
     ObjectPool pool;
     Pathfinding pathfinder;
     GridManager gridmanager;
     bool isRunning = false;
+    int score = 0;
+    public int Score { get { return score; } }
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
         pathfinder = pool.GetComponent<Pathfinding>();
         gridmanager = FindObjectOfType<GridManager>();
         timeRemaining = waveTimer;
+        scoreText.text = "Score\n" + score;
     }
 
     // Update is called once per frame
@@ -68,5 +73,11 @@ public class GameManager : MonoBehaviour
     public void ChangeSelectedTower(int towerCode)
     {
         curTowerSelect = towerCode;
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Score\n" + score;
     }
 }

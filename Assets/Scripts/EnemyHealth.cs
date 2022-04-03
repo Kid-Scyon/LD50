@@ -7,10 +7,13 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] int maxHP = 5;
     [SerializeField] int curHP = 0;
+    [SerializeField] int scoreValue = 10;
+    GameManager gm;
 
     void OnEnable()
     {
         curHP = maxHP;
+        gm = FindObjectOfType<GameManager>();
     }
 
     void OnParticleCollision(GameObject other)
@@ -20,6 +23,7 @@ public class EnemyHealth : MonoBehaviour
         if(curHP <= 0)
         {
             gameObject.SetActive(false);
+            gm.IncreaseScore(scoreValue);
         }
     }
 }
